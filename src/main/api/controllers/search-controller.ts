@@ -1,13 +1,17 @@
 import { Request, Response } from 'express';
-import { makeNyaaService, NyaaAnimeCategories } from 'nyaapi-http-client';
+import { Controller, Get } from 'infra/decorators';
+import { SearchService } from 'main/api/service';
 
+@Controller('/find')
 export class SearchController {
-  public static async searchAnime(req: Request, res: Response) {
-    const service = makeNyaaService();
+  private readonly searchService: SearchService = new SearchService();
+
+  @Get('/anime/:name')
+  private searchAnime = async (req: Request, res: Response) => {
     const { name } = req.params;
 
-    const result = await service.searchAnime(encodeURI(name), NyaaAnimeCategories.All);
+    const result = await this.searchService.findAnime(encodeURI(name));
 
     res.json({ data: result });
-  }
+  };
 }

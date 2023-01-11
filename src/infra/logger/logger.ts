@@ -24,4 +24,8 @@ export class Logger {
   debug(...message: unknown[]) {
     this.logger.debug(message);
   }
+
+  trace(...message: unknown[]) {
+    this.logger.trace(message);
+  }
 }
