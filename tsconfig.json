@@ -28,7 +28,6 @@
     "useUnknownInCatchVariables": false
   },
   "include": ["src"],
-  "exclude": ["node_modules", "dist", "./node_modules"],
   "ts-node": {
     "files": true
   }
