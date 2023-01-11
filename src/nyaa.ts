@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import 'reflect-metadata';
 import { Server } from 'infra/server';
-import { SearchController, StatusController } from 'main/api/controllers';
+import { getControllerInstances } from 'main/api/routes';
 
 export class NyaaServer extends Server {
   private PORT = process.env.PORT || 3000;
@@ -17,10 +17,9 @@ export class NyaaServer extends Server {
   }
 
   private setupControllerInstances() {
-    const controller1 = new SearchController();
-    const controller2 = new StatusController();
+    const instances = getControllerInstances();
 
-    this.setupControllers([controller1, controller2]);
+    this.setupControllers(instances);
   }
 }
 
