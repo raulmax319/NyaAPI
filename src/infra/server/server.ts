@@ -30,7 +30,7 @@ export class Server {
     });
   }
 
-  protected setupControllers(
+  protected setupV1Controllers(
     controllers: Controller | Array<Controller>,
     router?: Router,
     middleware?: Middleware,
@@ -39,6 +39,7 @@ export class Server {
       ? controllers
       : [controllers];
 
+    const v1Router = RouterExp();
     const expressRouter: Router = router || RouterExp;
 
     controllerList.map((controller) => {
@@ -54,8 +55,10 @@ export class Server {
         return;
       }
 
-      if (middleware) this.app.use(routerProperty.basePath, middleware, routerProperty.router);
-      else this.app.use(routerProperty.basePath, routerProperty.router);
+      if (middleware) v1Router.use(routerProperty.basePath, middleware, routerProperty.router);
+      else v1Router.use(routerProperty.basePath, routerProperty.router);
+
+      this.app.use('/v1', v1Router);
     });
   }
 }

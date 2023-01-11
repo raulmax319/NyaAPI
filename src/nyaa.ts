@@ -19,7 +19,7 @@ export class NyaaServer extends Server {
   private setupControllerInstances() {
     const instances = getControllerInstances();
 
-    this.setupControllers(instances);
+    this.setupV1Controllers(instances);
   }
 }
 
