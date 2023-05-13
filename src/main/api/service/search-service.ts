@@ -1,4 +1,4 @@
-import { NyaaAnimeCategories, NyaaModel, NyaaSharedFramework } from 'nyaapi-http-client';
+import { NyaaAnimeCategories, NyaaModel, NyaaSharedFramework } from 'nyaa-http-client';
 
 export class SearchService {
   public findAnime = async (
